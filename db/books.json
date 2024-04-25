@@ -1,0 +1,30 @@
+[
+    {
+        "title": "Things Fall Apart",
+        "author": "Chinua Achebe",
+        "year": 1958,
+        "isloan": "false",
+        "id": 1
+    },
+    {
+        "title": "The Passport of Mallam Ilia",
+        "author": "Cyprian Ekwensi",
+        "year": 1960,
+        "isloan": "False",
+        "id": 2
+    },
+    {
+        "title": "Eze Goes to School",
+        "author": "Onuora Nzekwu",
+        "year": 1963,
+        "isloan": "False",
+        "id": 3
+    },
+    {
+        "title": "Purple Hibiscus",
+        "author": "Chimamanda Ngozi Adichie",
+        "year": 1979,
+        "isloan": "False",
+        "id": 4
+    }
+]
