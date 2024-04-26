@@ -7,9 +7,6 @@ const booksDbPath = path.join(__dirname, "db", 'books.json');
 const usersDbPath = path.join(__dirname, "db", 'users.json');
 
 const PORT = 5000
-const HOST_NAME = 'localhost';
-
-
 
 
 function RequestHandler(req, res) {
@@ -332,8 +329,8 @@ function loanBook(req, res) {
 
 const server = http.createServer(RequestHandler)
 
-server.listen(PORT, HOST_NAME, () => {
+server.listen(PORT, () => {
     booksDB = JSON.parse(fs.readFileSync(booksDbPath, 'utf8'));
     usersDB = JSON.parse(fs.readFileSync(usersDbPath, 'utf8'));
-    console.log(`Server is listening on ${HOST_NAME}:${PORT}`)
+    console.log(`Server is listening on ${PORT}`)
 })
