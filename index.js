@@ -6,10 +6,7 @@ const {authenticateUser} = require('./authenticate')
 const booksDbPath = path.join(__dirname, "db", 'books.json');
 const usersDbPath = path.join(__dirname, "db", 'users.json');
 
-const PORT = 5000
-const HOST_NAME = 'localhost';
-
-
+const PORT = process.env.PORT || 5000
 
 
 function RequestHandler(req, res) {
@@ -37,13 +34,13 @@ function RequestHandler(req, res) {
         addBook(req, res)
     } else if (req.url === '/books' && req.method === 'PUT') {
         //Update a Book
-        updateBook(req, res);
+        updateBook(req, res)
     } else if (req.url.startsWith('/books') && req.method === 'DELETE') {
         //Delete a Book
-        deleteBook(req, res);
+        deleteBook(req, res)
     } else if (req.url.startsWith('/loanbook') && req.method === 'PUT') {
         //Loan out a Book
-        loanBook(req, res);
+        loanBook(req, res)
     } else {
         //Inavlid Book API
         res.writeHead(404);
@@ -81,6 +78,7 @@ function createUser (req, res) {
         const parsedUser = Buffer.concat(body).toString()
 
         if(!parsedUser){
+            res.writeHead(400)
             res.end(JSON.stringify({
                 message: "Please provide a username and password in a JSON format to create a user"
             }))
@@ -140,8 +138,9 @@ function addBook (req, res) {
         const parsedBook = Buffer.concat(body).toString()
 
         if(!parsedBook){
+            res.writeHead(400)
             res.end(JSON.stringify({
-                message: "Please provide a title, author and year in a JSON format to create a book"
+                message: "Please provide a username, password and new book details in a JSON format to create a book"
             }))
             return
         }
@@ -188,6 +187,7 @@ function updateBook(req, res) {
         const parsedBook = Buffer.concat(body).toString()
 
         if(!parsedBook){
+            res.writeHead(400)
             res.end(JSON.stringify({
                 message: "Please provide the book id and details to update in a JSON format to update a book"
             }))
@@ -341,8 +341,8 @@ function loanBook(req, res) {
 
 const server = http.createServer(RequestHandler)
 
-server.listen(PORT, HOST_NAME, () => {
+server.listen(PORT, () => {
     booksDB = JSON.parse(fs.readFileSync(booksDbPath, 'utf8'));
     usersDB = JSON.parse(fs.readFileSync(usersDbPath, 'utf8'));
-    console.log(`Server is listening on ${HOST_NAME}:${PORT}`)
+    console.log(`Server is listening on:${PORT}`)
 })
