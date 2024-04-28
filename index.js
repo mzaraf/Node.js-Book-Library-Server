@@ -52,7 +52,7 @@ function RequestHandler(req, res) {
 
 function apiRoute(req, res) {
     res.end(JSON.stringify({
-        message: "Welcome to users and book api"
+        message: "Welcome to users and books api"
     }))
     return
 }
